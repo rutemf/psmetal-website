@@ -168,7 +168,7 @@ function App() {
             </div>
             <nav className="hidden md:flex space-x-8">
               <a href="#inicio" className="hover:text-orange-400 transition-colors">Início</a>
-              <a href="#missao" className="hover:text-orange-400 transition-colors">Visão</a>
+              <a href="#visao" className="hover:text-orange-400 transition-colors">Visão</a>
               <a href="#portfolio" className="hover:text-orange-400 transition-colors">Portfólio</a>
               <a href="#contactos" className="hover:text-orange-400 transition-colors">Contactos</a>
             </nav>
