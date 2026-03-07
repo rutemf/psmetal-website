@@ -115,10 +115,10 @@ const App: React.FC = () => {
                           <img src={logotipo} alt="Logo" className="h-10 mr-3" />
                         </div>
                         <nav className="hidden md:flex space-x-8">
-                          <a href="#inicio" className="hover:text-orange-400 transition-colors">Início</a>
-                          <a href="#visao" className="hover:text-orange-400 transition-colors">Visão</a>
-                          <a href="#portfolio" className="hover:text-orange-400 transition-colors">Portfólio</a>
-                          <a href="#contactos" className="hover:text-orange-400 transition-colors">Contactos</a>
+                          <a href="#inicio" className="hover:text-blue-200 transition-colors">Início</a>
+                          <a href="#visao" className="hover:text-blue-200 transition-colors">Visão</a>
+                          <a href="#portfolio" className="hover:text-blue-200 transition-colors">Portfólio</a>
+                          <a href="#contactos" className="hover:text-blue-200 transition-colors">Contactos</a>
                         </nav>
                       </div>
                     </div>
@@ -133,7 +133,7 @@ const App: React.FC = () => {
                     ></div>
                     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                       <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                        Excelência em <span className="text-orange-500">Metalúrgia</span>
+                        Excelência em <span className="text-blue-200">Metalúrgia</span>
                       </h1>
                       <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
                         Engineering for you
@@ -164,8 +164,8 @@ const App: React.FC = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {services.map((service, idx) => (
                             <div key={idx} className="bg-white rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow">
-                              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                                <service.icon className="w-6 h-6 text-orange-600" />
+                              <div className="w-12 h-12 bg-blue-200 rounded-lg flex items-center justify-center mb-4">
+                                <service.icon className="w-6 h-6 "/>
                               </div>
                               <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.title}</h3>
                               <p className="text-gray-600">{service.description}</p>
@@ -216,21 +216,21 @@ const App: React.FC = () => {
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                         <div className="space-y-8">
                           <div className="flex items-start space-x-4">
-                            <Phone className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                            <Phone className="w-6 h-6 text-blue-200 mt-1 flex-shrink-0" />
                             <div>
                               <h3 className="text-xl font-semibold mb-2">Telefone</h3>
                               <p className="text-gray-300">+351 252 613 714</p>
                             </div>
                           </div>
                           <div className="flex items-start space-x-4">
-                            <Mail className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                            <Mail className="w-6 h-6 text-blue-200 mt-1 flex-shrink-0" />
                             <div>
                               <h3 className="text-xl font-semibold mb-2">Email</h3>
                               <p className="text-gray-300">geral@ps-metal.pt</p>
                             </div>
                           </div>
                           <div className="flex items-start space-x-4">
-                            <Linkedin className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                            <Linkedin className="w-6 h-6 text-blue-200 mt-1 flex-shrink-0" />
                             <div>
                               <h3 className="text-xl font-semibold mb-2">LinkedIn</h3>
                               <p className="text-gray-300">https://www.linkedin.com/company/p-s-metal-lda/</p>
@@ -240,7 +240,7 @@ const App: React.FC = () => {
 
                         <div className="space-y-8">
                           <div className="flex items-start space-x-4">
-                            <MapPin className="w-6 h-6 text-orange-500 mt-1 flex-shrink-0" />
+                            <MapPin className="w-6 h-6 text-blue-200 mt-1 flex-shrink-0" />
                             <div>
                               <h3 className="text-xl font-semibold mb-2">Morada</h3>
                               <p className="text-gray-300">
