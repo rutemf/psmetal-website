@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Phone, Mail, Linkedin, MapPin, Factory, Wrench, Shield, Award } from 'lucide-react';
 import logotipo from './assets/logotipo.jpg';
+import PortfolioSectionPage from './PortfolioSectionPage';
 
 // Dados
 const services = [
@@ -71,39 +72,31 @@ const portfolioSections = [
   },
   {
     title: "Soldadura",
-    images: [
-      "https://images.pexels.com/photos/33.jpeg",
-      "https://images.pexels.com/photos/34.jpeg",
-      "https://images.pexels.com/photos/35.jpeg",
-      "https://images.pexels.com/photos/36.jpeg",
-      "https://images.pexels.com/photos/37.jpeg",
-      "https://images.pexels.com/photos/38.jpeg",
+    subSections: [
+      {
+        title: "Soldadura Laser",
+        images: [
+          "/assets/soldadura/laser/_DSC0250.JPG",
+          "/assets/soldadura/laser/_DSC02501.jpg"
+        ]
+      },
+      {
+        title: "Soldadura TIG",
+        images: [
+          "/assets/soldadura/tig/_DSC0257.JPG",
+          "/assets/soldadura/tig/_DSC02571.jpg",
+        ]
+      },
+      {
+        title: "Soldadura MIG MAG",
+        images: [
+          "/assets/soldadura/migMag/_DSC0248.JPG",
+          "/assets/soldadura/migMag/_DSC02481.jpg",
+        ]
+      }
     ],
   },
 ];
-
-// Página individual do portfólio
-const PortfolioSectionPage: React.FC<{ portfolioSections: typeof portfolioSections }> = ({ portfolioSections }) => {
-  const { sectionId } = useParams<{ sectionId: string }>();
-  const section = portfolioSections[Number(sectionId)];
-  if (!section) return <p className="text-center mt-20">Secção não encontrada</p>;
-
-  return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">{section.title}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {(section.images || []).map((img, idx) => (
-              <img
-                  key={idx}
-                  src={img}
-                  alt={`${section.title} ${idx + 1}`}
-                  className="w-full h-48 object-cover rounded-lg shadow-md"
-              />
-          ))}
-        </div>
-      </div>
-  );
-};
 
 const App: React.FC = () => {
   return (
@@ -199,7 +192,7 @@ const App: React.FC = () => {
                             >
                               <div className="relative h-48">
                                 <img
-                                    src={section.images[0]}
+                                    src={section.images ? section.images[0] : section.subSections![0].images[0]}
                                     alt={section.title}
                                     className="w-full h-full object-cover"
                                 />
@@ -278,7 +271,10 @@ const App: React.FC = () => {
           />
 
           {/* Página individual do portfólio */}
-          <Route path="/portfolio/:sectionId" element={<PortfolioSectionPage portfolioSections={portfolioSections} />} />
+          <Route
+              path="/portfolio/:sectionId"
+              element={<PortfolioSectionPage portfolioSections={portfolioSections} />}
+          />
         </Routes>
       </Router>
   );
