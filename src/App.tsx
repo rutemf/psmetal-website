@@ -164,7 +164,7 @@ const App: React.FC = () => {
                   </section>
 
                   {/* Serviços */}
-                  <section className="pt-8 pb-16 bg-gray-50">
+                  <section className="pt-8 pb-10 bg-gray-50">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                       <div className="text-center mb-16">
                         <h2 className="text-4xl font-bold text-gray-900 mb-4">Os Nossos Serviços</h2>
@@ -186,7 +186,7 @@ const App: React.FC = () => {
                   </section>
 
                   {/* Portfólio */}
-                  <section id="portfolio" className="py-20 bg-white">
+                  <section id="portfolio" className="pt-8 pb-20 bg-white" style={{ scrollMarginTop: '64px' }}>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                       <div className="text-center mb-12">
                         <h2 className="text-4xl font-bold text-gray-900 mb-4">Portfólio</h2>
