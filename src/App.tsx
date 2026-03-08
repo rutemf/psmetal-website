@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Phone, Mail, Linkedin, MapPin, Factory, Wrench, Shield, Award } from 'lucide-react';
-import logotipo from './assets/logotipo.jpg';
+import logotipo from './assets/logoSemFundo.png';
 import fundo from './assets/fundo.jpg';
 import PortfolioSectionPage from './PortfolioSectionPage';
 
