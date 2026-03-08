@@ -214,7 +214,7 @@ const App: React.FC = () => {
                                 />
                               </div>
                               <div className="px-5 py-4 flex items-center justify-between">
-                                <h3 className="text-base font-semibold text-gray-800 uppercase tracking-wide">{section.title}</h3>
+                                <h3 className="text-base font-semibold text-gray-800 tracking-wide">{section.title}</h3>
                                 <span className="text-blue-300 text-lg">→</span>
                               </div>
                             </Link>
