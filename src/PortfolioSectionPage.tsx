@@ -162,12 +162,17 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
                         </button>
                     ) : <div />}
 
-                    <Link
-                        to="/#portfolio"
+                    <button
+                        onClick={() => {
+                            navigate('/');
+                            setTimeout(() => {
+                                document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
+                            }, 100);
+                        }}
                         className="text-xs text-gray-400 hover:text-blue-400 transition-colors tracking-wide uppercase"
                     >
                         Ver todos
-                    </Link>
+                    </button>
 
                     {nextSection ? (
                         <button
