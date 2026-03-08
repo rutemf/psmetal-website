@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { ArrowLeft, ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface PortfolioSection {
     title: string;
@@ -14,7 +14,12 @@ interface Props {
 
 const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
     const { sectionId } = useParams<{ sectionId: string }>();
-    const section = portfolioSections[Number(sectionId)];
+    const navigate = useNavigate();
+    const currentIdx = Number(sectionId);
+    const section = portfolioSections[currentIdx];
+
+    const prevSection = currentIdx > 0 ? portfolioSections[currentIdx - 1] : null;
+    const nextSection = currentIdx < portfolioSections.length - 1 ? portfolioSections[currentIdx + 1] : null;
 
     const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -36,7 +41,6 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
         return () => window.removeEventListener('keydown', handleKey);
     }, [lightboxIndex, allImages.length]);
 
-    // Prevent body scroll when lightbox is open
     useEffect(() => {
         if (lightboxIndex !== null) {
             document.body.style.overflow = 'hidden';
@@ -45,6 +49,11 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
         }
         return () => { document.body.style.overflow = ''; };
     }, [lightboxIndex]);
+
+    // Scroll to top when section changes
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [sectionId]);
 
     if (!section) {
         return (
@@ -71,7 +80,6 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
                             className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0.2'; }}
                         />
-                        {/* Hover overlay */}
                         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
               <span className="text-white text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity bg-black bg-opacity-50 px-3 py-1 rounded-full tracking-wide">
                 Ampliar
@@ -83,7 +91,6 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
         </div>
     );
 
-    // Calculate offsets per subsection
     let offset = 0;
 
     return (
@@ -93,13 +100,13 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
             <header className="bg-slate-900 text-white sticky top-0 z-50 shadow-lg">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center h-16 gap-4">
-                        <Link
-                            to="/"
+                        <button
+                            onClick={() => navigate(-1)}
                             className="flex items-center gap-2 text-gray-300 hover:text-blue-200 transition-colors text-sm font-medium"
                         >
                             <ArrowLeft size={16} />
                             Voltar
-                        </Link>
+                        </button>
                         <span className="text-slate-600">|</span>
                         <span className="text-gray-400 text-sm">Portfólio</span>
                         <span className="text-slate-600">|</span>
@@ -121,7 +128,7 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
                                 <div key={subIdx}>
                                     <div className="flex items-center gap-3 mb-6">
                                         <div className="w-1 h-6 rounded-full bg-blue-400" />
-                                        <h2 className="text-lg font-semibold text-gray-700 uppercase tracking-wide">
+                                        <h2 className="text-lg font-semibold text-gray-700 tracking-wide">
                                             {sub.title}
                                         </h2>
                                     </div>
@@ -137,6 +144,46 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
                         Sem imagens disponíveis para esta secção.
                     </p>
                 )}
+
+                {/* Navigation between sections */}
+                <div className="flex items-center justify-between mt-16 pt-8 border-t border-gray-100">
+                    {prevSection ? (
+                        <button
+                            onClick={() => navigate(`/portfolio/${currentIdx - 1}`)}
+                            className="flex items-center gap-3 group"
+                        >
+                            <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-blue-400 group-hover:bg-blue-50 transition-all">
+                                <ChevronLeft size={18} className="text-gray-400 group-hover:text-blue-400 transition-colors" />
+                            </div>
+                            <div className="text-left">
+                                <p className="text-xs text-gray-400 mb-0.5">Anterior</p>
+                                <p className="text-sm font-semibold text-gray-700 group-hover:text-blue-500 transition-colors">{prevSection.title}</p>
+                            </div>
+                        </button>
+                    ) : <div />}
+
+                    <Link
+                        to="/#portfolio"
+                        className="text-xs text-gray-400 hover:text-blue-400 transition-colors tracking-wide uppercase"
+                    >
+                        Ver todos
+                    </Link>
+
+                    {nextSection ? (
+                        <button
+                            onClick={() => navigate(`/portfolio/${currentIdx + 1}`)}
+                            className="flex items-center gap-3 group"
+                        >
+                            <div className="text-right">
+                                <p className="text-xs text-gray-400 mb-0.5">Próximo</p>
+                                <p className="text-sm font-semibold text-gray-700 group-hover:text-blue-500 transition-colors">{nextSection.title}</p>
+                            </div>
+                            <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-blue-400 group-hover:bg-blue-50 transition-all">
+                                <ChevronRight size={18} className="text-gray-400 group-hover:text-blue-400 transition-colors" />
+                            </div>
+                        </button>
+                    ) : <div />}
+                </div>
             </main>
 
             {/* Lightbox */}
@@ -146,7 +193,6 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
                     style={{ background: 'rgba(0,0,0,0.92)' }}
                     onClick={() => setLightboxIndex(null)}
                 >
-                    {/* Close button */}
                     <button
                         onClick={() => setLightboxIndex(null)}
                         className="absolute top-5 right-5 text-white bg-white bg-opacity-10 hover:bg-opacity-20 rounded-full p-2 transition-all"
@@ -154,7 +200,6 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
                         <X size={22} />
                     </button>
 
-                    {/* Prev */}
                     {lightboxIndex > 0 && (
                         <button
                             onClick={e => { e.stopPropagation(); setLightboxIndex(i => i !== null ? i - 1 : null); }}
@@ -164,7 +209,6 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
                         </button>
                     )}
 
-                    {/* Image */}
                     <img
                         src={allImages[lightboxIndex]}
                         alt="Imagem ampliada"
@@ -173,7 +217,6 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
                         style={{ maxHeight: '88vh', padding: '1rem' }}
                     />
 
-                    {/* Next */}
                     {lightboxIndex < allImages.length - 1 && (
                         <button
                             onClick={e => { e.stopPropagation(); setLightboxIndex(i => i !== null ? i + 1 : null); }}
@@ -183,7 +226,6 @@ const PortfolioSectionPage: React.FC<Props> = ({ portfolioSections }) => {
                         </button>
                     )}
 
-                    {/* Counter */}
                     <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white text-sm bg-black bg-opacity-40 px-4 py-1 rounded-full">
                         {lightboxIndex + 1} / {allImages.length}
                     </div>
