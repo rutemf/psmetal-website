@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Phone, Mail, Linkedin, MapPin, Factory, Wrench, Shield, Award } from 'lucide-react';
 import logotipo from './assets/logoSemFundo.png';
 import fundo from './assets/fundo.jpg';
+import logotipoWatermark from './assets/logoWaterMark.png';
 import PortfolioSectionPage from './PortfolioSectionPage';
 
 // Dados
@@ -127,7 +128,7 @@ const App: React.FC = () => {
                   </header>
 
                   {/* Hero Section */}
-                  <section id="inicio" className="relative bg-gradient-to-r from-slate-900 to-slate-700 text-white py-24">
+                  <section id="inicio" className="relative bg-gradient-to-r from-slate-900 to-slate-700 text-white" style={{ minHeight: '70vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', paddingBottom: '4rem' }}>
                     <div className="absolute inset-0 bg-black opacity-50"></div>
                     <div
                         className="absolute inset-0 bg-cover bg-center"
@@ -135,16 +136,20 @@ const App: React.FC = () => {
                     ></div>
                     {/* Blue tint overlay matching logo */}
                     <div className="absolute inset-0" style={{ background: 'rgba(74, 144, 194, 0.18)' }}></div>
-                    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                      <h1 className="text-5xl md:text-6xl font-bold mb-6">
-                        Excelência em <span className="text-blue-200">Metalúrgia</span>
-                      </h1>
-                      <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto tracking-widest uppercase font-light">
-                        Engineering for you
-                      </p>
+                    {/* Watermark logo */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none" style={{ paddingBottom: '80px' }}>
+                      <img
+                          src={logotipoWatermark}
+                          alt=""
+                          className="w-2/3 max-w-2xl"
+                          style={{ opacity: 1 }}
+                      />
+                    </div>
+                    {/* Ver Portfólio button */}
+                    <div className="absolute bottom-16 left-0 right-0 flex justify-center">
                       <a
                           href="#portfolio"
-                          className="inline-block bg-blue-400 hover:bg-blue-300 text-white font-semibold px-8 py-3 rounded transition-colors text-sm tracking-wide"
+                          className="inline-flex items-center gap-2 bg-blue-400 hover:bg-blue-500 text-white font-semibold px-8 py-3 rounded-md transition-all duration-200 text-sm tracking-wide shadow-md hover:shadow-lg"
                       >
                         Ver Portfólio
                       </a>
