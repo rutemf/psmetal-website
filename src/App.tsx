@@ -27,7 +27,7 @@ const portfolioSections = [
     ],
   },
   {
-    title: "Produto Chave Na Mão",
+    title: "Produto Chave na Mão",
     images: [
       "/assets/produtoChaveNaMao/_DSC0223.JPG",
       "/assets/produtoChaveNaMao/_DSC0226.JPG",
@@ -60,7 +60,7 @@ const portfolioSections = [
     ],
   },
   {
-    title: "Torneamento E Fresagem CNC",
+    title: "Torneamento e Fresagem CNC",
     images: [
       "/assets/torneamentoEFresagemCNC/_DSC0217.JPG",
       "/assets/torneamentoEFresagemCNC/_DSC0218.JPG",
