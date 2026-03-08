@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Phone, Mail, Linkedin, MapPin, Factory, Wrench, Shield, Award } from 'lucide-react';
 import logotipo from './assets/logotipo.jpg';
+import fundo from './assets/fundo.jpg';
 import PortfolioSectionPage from './PortfolioSectionPage';
 
 // Dados
@@ -130,7 +131,7 @@ const App: React.FC = () => {
                     <div className="absolute inset-0 bg-black opacity-50"></div>
                     <div
                         className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: 'url(https://images.pexels.com/photos/1108101/pexels-photo-1108101.jpeg?auto=compress&cs=tinysrgb&w=1600)' }}
+                        style={{ backgroundImage: `url(${fundo})` }}
                     ></div>
                     {/* Blue tint overlay matching logo */}
                     <div className="absolute inset-0" style={{ background: 'rgba(74, 144, 194, 0.18)' }}></div>
